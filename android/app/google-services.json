@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576474187925",
+    "project_id": "quranic-verse",
+    "storage_bucket": "quranic-verse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576474187925:android:b59530a38f576a22d7739c",
+        "android_client_info": {
+          "package_name": "com.example.quranic_verses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576474187925-vr93srmfedalsvm6ua316hq98h7jdu3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxI0l72j2cIx-5LNSdbWMQt52nbNVBge8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576474187925-vr93srmfedalsvm6ua316hq98h7jdu3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

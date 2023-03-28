@@ -18,10 +18,7 @@ class HomeView extends StatelessWidget {
         crossAxisCount: 3,
         children: List<Widget>.generate(
           state.chapters.length,
-          (i) => Hero(
-            tag: 'surah-${state.chapters[i].id}',
-            child: SurahCard(chapter: state.chapters[i]),
-          ),
+          (i) => SurahCard(chapter: state.chapters[i]),
         ),
       ),
     );
@@ -29,15 +26,15 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-            body: _body(state),
-          ),
-        );
-      },
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+        body: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return _body(state);
+          },
+        ),
+      ),
     );
   }
 }

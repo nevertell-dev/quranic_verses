@@ -22,7 +22,8 @@ class SurahCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => InfoView(chapter: chapter)));
+              builder: (context) => InfoView(chapter: chapter),
+            ));
       },
       child: Container(
         margin: const EdgeInsets.all(4.0),

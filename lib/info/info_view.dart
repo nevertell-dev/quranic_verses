@@ -24,26 +24,74 @@ class InfoView extends StatelessWidget {
       create: (context) => InfoCubit()..init(chapter.id),
       child: SafeArea(
         child: Scaffold(
-          body: BlocBuilder<InfoCubit, InfoState>(
-            builder: (context, state) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    AspectRatio(
-                      aspectRatio: 1 / 1.6,
-                      child: Hero(
-                        tag: 'surah-${chapter.id}',
-                        child: SurahCard(chapter: chapter),
+          backgroundColor: const Color(0xFF7BFECF),
+          body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xffffffff), Color(0x10ffffff)],
+                begin: Alignment(0.0, -0.1),
+                end: Alignment.topCenter,
+              ),
+            ),
+            child: BlocBuilder<InfoCubit, InfoState>(
+              builder: (context, state) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: AspectRatio(
+                              aspectRatio: 1 / 1.6,
+                              child: SurahCard(chapter: chapter),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(chapter.revelationPlace == 'madinah'
+                                      ? 'Madaniyah'
+                                      : 'Makiyah'),
+                                  Text(
+                                    'Halaman: ${chapter.pages[0]}-${chapter.pages[1]}',
+                                  ),
+                                  Text(
+                                    'Urutan Wahyu: ${chapter.revelationOrder}',
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primaryContainer,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                    child: TextButton(
+                                        onPressed: () => {},
+                                        child: const Text('Baca')),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ),
-                    if (state is InfoLoaded) ...state.children
-                  ],
-                ),
-              );
-            },
+                      const SizedBox(height: 24.0),
+                      if (state is InfoLoaded) ...state.children
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -67,12 +115,14 @@ class InfoCubit extends Cubit<InfoState> {
         children.add(
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              'Pokok-pokok Isi',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 48.0,
-                fontWeight: FontWeight.w600,
+            child: FittedBox(
+              child: Text(
+                'Pokok-pokok Isi',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 48.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
