@@ -30,8 +30,14 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         body: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            return _body(state);
+          builder: (_, state) {
+            return MediaQuery.of(context).size.width < 600
+                ? _body(state)
+                : const Center(
+                    child: Text(
+                      'Aplikasi ini dioptimalisasi untuk perangkat mobile dengan layar portrait\nJika ingin membukanya di desktop perkecil dulu windowsnya >>',
+                    ),
+                  );
           },
         ),
       ),
